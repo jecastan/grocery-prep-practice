@@ -1,0 +1,60 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #698fc7;
+    color: #FFF;
+    padding: 0px 20px;
+}
+
+header a {
+    color: #e48e0d;
+    margin: 0 12px;
+}
+
+li {
+    margin: 4px 0;
+}
+
+main {
+    padding: 15px 20% 40px;
+}
+
+h2 {
+    background-color: #f3a736;
+    padding: 4px 8px;
+}
+
+li {
+    margin: 4px 0;
+}
+
+.showcase {
+    display: flex;
+    justify-content: space-between;
+}
+
+.showcase > .links {
+    margin: 30px 6%;
+}
+  
+.showcase > .desc {
+    padding-right: 4px;
+}
+
+.links > a {
+    color: #1f3bb6;
+    line-height: 30px;
+}
+
+#chef-photos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+  
+#chef-photos > img {
+    height: 500px;
+    padding: 3px 1px;
+}
