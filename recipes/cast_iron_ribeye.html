@@ -17,18 +17,28 @@
     <h1>Cast Iron Ribeye</h1>
 
     <div class="showcase">
-      <div class="desc">
-        <p>Perfect Keto Dinner</p>
-      </div>
-      <img src="../imgs/Ribeye_Steak.jpg" height="250">
+        <div class="info">
+            <div class="desc">
+                <p>Perfect Keto Dinner</p>
+            </div>
+
+            <div class="servings">
+                <h3>Servings</h3>
+                <button id="dec">-</button>
+                <span id="serving-count">1</span>
+                <button id="inc">+</button>
+            </div>
+        </div>
+        
+        <img src="../imgs/Ribeye_Steak.jpg" height="250">
     </div>
 
     <h2>Ingredients</h2>
     <ul>
-      <li>1 ribeye, 1 lb</li>
-      <li>1 tbsp salt</li>
-      <li>1 tsp pepper</li>
-      <li>1 tbsp canola oil</li>
+      <li><span class="count">1</span> ribeye, 1 lb each</li>
+      <li><span class="count">1</span> tbsp salt</li>
+      <li><span class="count">1</span> tsp pepper</li>
+      <li><span class="count">1</span> tbsp canola oil</li>
     </ul>
 
     <h2>Instructions</h2>
@@ -43,5 +53,7 @@
         <li>Remove from oven and allow to rest in pan for 10 minutes</li>
     </ol>
   </main>
+
+  <script src="../recipe.js"></script>
 </body>
 </html>
