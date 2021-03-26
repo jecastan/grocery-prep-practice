@@ -48,6 +48,26 @@ li {
     line-height: 30px;
 }
 
+.servings {
+    margin: 0 0 10px;
+}
+  
+.servings > button, #post-rating {
+    background-color: #BC4524;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px 14px;
+}
+  
+button:hover {
+    cursor: pointer;
+}
+
+#serving-count {
+    margin: 0 4px;
+}
+
 #chef-photos {
     display: flex;
     justify-content: space-between;
