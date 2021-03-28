@@ -17,16 +17,25 @@
     <h1>Pressure Cooked Artichoke</h1>
 
     <div class="showcase">
-      <div class="desc">
-        <p>Artichokes can be difficult to cook properly due to being so tough.
-            Try pressure cooking to cook them quickly to perfection</p>
+      <div class="info">
+        <div class="desc">
+          <p>Artichokes can be difficult to cook properly due to being so tough.
+              Try pressure cooking to cook them quickly to perfection</p>
+        </div>
+
+        <div class="servings">
+          <h3>Servings</h3>
+          <button id="dec">-</button>
+          <span id="serving-count">1</span>
+          <button id="inc">+</button>
+      </div>
       </div>
       <img src="../imgs/pressure_cooked_artichokes.jpg" height="250">
     </div>
 
     <h2>Ingredients</h2>
     <ul>
-      <li>1 artichoke</li>
+      <li><span class="count">1</span> artichoke</li>
     </ul>
 
     <h2>Instructions</h2>
@@ -39,5 +48,7 @@
         <li>Remove and serve</li>
     </ol>
   </main>
+
+  <script src="../recipe.js"></script>
 </body>
 </html>
