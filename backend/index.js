@@ -16,12 +16,18 @@ app.use(express.static('C:/Users/Jesse Castenada Lutz/grocery-prep-practice'))
 
 app.use(express.json())
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 const getRecipes = async () => {
-    return await Recipe.find({})
+    return await Recipe.find({}, '_id title')
 }
 
-const getRecipe = async name => {
-    return await Recipe.find({name: name})
+const getRecipe = async id => {
+    return await Recipe.findOne({_id: id})
 }
 
 const postRating = async (name, rating) => {
@@ -31,14 +37,18 @@ const postRating = async (name, rating) => {
     )
 }
 
-app.get('/api/recipe', async (req, res) => {
-    const name = req.query.name
+app.get('/api/getRecipes', async (req, res) => {
 
-    let recipes
-    if (name === undefined)
-        recipes = await getRecipes()
-    else
-        recipes = await getRecipe(name)
+    let recipes = await getRecipes()
+
+    res.json(recipes)
+})
+
+app.get('/api/getRecipe/:id', async (req, res) => {
+    const id = req.params.id
+
+    let recipes = await getRecipe(id)
+
     res.json(recipes)
 })
 

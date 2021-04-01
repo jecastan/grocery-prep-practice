@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const recipeSchema = new mongoose.Schema({
   // an ID attribute will automatically be added on insert
-	name: String,
+	title: String,
   desc: String,
   picture: String,
   ratings: [Number],
