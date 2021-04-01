@@ -30,9 +30,9 @@ class Recipe extends React.Component {
                     <div id='actions'>
                         <div id='ratings'>
                             <span id='rating'>{this.state.rating}</span> &#9734;
+                            &nbsp;
+                            <button id='add-to-cart'>Add to Cart</button>
                         </div>
-                        &nbsp;
-                        <button id='add-to-cart'>Add to Cart</button>
                     </div>
                 </div>
                 <div className='showcase'>
@@ -43,7 +43,10 @@ class Recipe extends React.Component {
 
                 <h2>Ingredients</h2>
                 <ul>
-                    
+                    {this.state.ingredients && this.state.ingredients.map((item) => {
+                            return <li key={item._id}><span className='count'>{item.amount} </span>{item.ingredient}</li>;
+                        })
+                    }
                 </ul>
 
                 <h2>Instructions</h2>
