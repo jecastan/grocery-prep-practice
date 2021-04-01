@@ -1,4 +1,23 @@
-main {
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F4F1DE;
+}
+
+h2 {
+  background-color: #81B29A;
+  padding: 4px 8px;
+}
+
+#recipe, #recipe-list {
+  padding: 15px 10% 40px;
+}
+
+main#browse {
   display: grid;
   grid-template-columns: 75% 25%;
+}
+
+button:hover {
+  cursor: pointer;
 }
