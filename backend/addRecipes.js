@@ -60,7 +60,7 @@ const salsaRecipe = new Recipe({
 const omeletteRecipe = new Recipe({
     title: "Chorizo Omelette",
     desc:"Tasty brunch",
-    picture:"../imgs/Chorizo Omelette.jpg",
+    picture:"../imgs/Chorizo_Omelette.jpg",
     ratings: [5, 4, 3],
     servings: 1,
     ingredients: [
@@ -85,11 +85,11 @@ const omeletteRecipe = new Recipe({
 const artichokeRecipe = new Recipe({
     title: "Pressure Cooked Artichoke",
     desc:"Artichokes can be difficult to cook properly due to being so tough. Try pressure cooking to cook them quickly to perfection",
-    picture:"../imgs/Artichoke.jpg",
+    picture:"../imgs/pressure_cooked_artichokes.jpg",
     ratings: [5, 4, 3],
     servings: 1,
     ingredients: [
-        {ingredient: "artichoke", amount: 1},
+        {ingredient: "artichoke", amount: 1}
     ],
     instructions: [
         "Pour 1/2 in of water in bottom of pressure cooker with vegtable steamer",
