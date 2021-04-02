@@ -7,6 +7,11 @@ class Recipe extends React.Component {
         this.state = {}
     }
 
+    updateRating () {
+        this.postRating ();
+        this.componentDidMount()
+    }
+
     componentDidMount() {
         const id = window.location.hash.substr(1);
         fetch('http://localhost:3001/api/getRecipe/' + id)
@@ -16,10 +21,42 @@ class Recipe extends React.Component {
 
             let rating = recipe.ratings.reduce((a, b) => a + b) / recipe.ratings.length;
             rating = rating.toFixed(2);
-            this.setState({rating: rating});
+
+            this.setState(
+                {rating: rating}
+            );
 
             document.title = recipe.title + ' - Grocery Prep'
         })
+    }
+
+    selectedRating () {
+        const selected = +(document.getElementById('select-rating').value);
+        this.setState({selected: selected})
+    }
+
+    postRating () {
+
+        const newRating = this.state.selected;
+        if (isNaN(newRating)) return;
+
+        this.setState({ratings: [...this.state.ratings, newRating]});
+        let rating = this.state.ratings.reduce((a, b) => a + b) / this.state.ratings.length;
+        rating = rating.toFixed(2);
+        this.setState({rating: rating});
+ 
+        const ratingBody = {
+            id: this.state._id,
+            rating: newRating
+        }
+
+        fetch('http://localhost:3001/api/postRating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ratingBody)
+        });
     }
 
     updateCount(dir) {
@@ -60,7 +97,7 @@ class Recipe extends React.Component {
                         </div>
                         <div className='rating'>
                             <label id='rating-label' for='selecting-rating'>Rate Me!</label>
-                            <select id='select-rating' defaultValue='none'>
+                            <select id='select-rating' onChange={() => this.selectedRating()} defaultValue='none'>
                                 <option value='none' disabled hidden>Select Rating</option>
                                 <option value='1'>1 &#9733;</option>
                                 <option value='2'>2 &#9733;</option>
@@ -68,7 +105,7 @@ class Recipe extends React.Component {
                                 <option value='4'>4 &#9733;</option>
                                 <option value='5'>5 &#9733;</option>
                             </select>
-                            &nbsp;<button id='post-rating'>Post Rating</button>
+                            &nbsp;<button id='post-rating' onClick={() => this.updateRating()}>Post Rating</button>
                         </div>
                     </div>
                     <img src={this.state.picture} height='250px' alt={'Photo of ' +this.state.title}></img>

@@ -30,9 +30,9 @@ const getRecipe = async id => {
     return await Recipe.findOne({_id: id})
 }
 
-const postRating = async (name, rating) => {
+const postRating = async (id, rating) => {
     return await Recipe.findOneAndUpdate(
-        { name: name },
+        { _id: id },
         { $push: {ratings: rating} }
     )
 }
@@ -52,11 +52,11 @@ app.get('/api/getRecipe/:id', async (req, res) => {
     res.json(recipes)
 })
 
-app.post('/api/rating', async (req, res) => {
-    const name = req.body.name
-    const ratings = req.body.ratings
+app.post('/api/postRating', async (req, res) => {
+    const id = req.body.id
+    const rating = req.body.rating
 
-    const rating = await postRating(name, ratings)
+    const ratings = await postRating(id, rating)
     res.send()
 })
 
