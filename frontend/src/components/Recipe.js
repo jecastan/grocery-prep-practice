@@ -22,6 +22,20 @@ class Recipe extends React.Component {
         })
     }
 
+    updateCount(dir) {
+        if (this.state.servings + dir <= 0) return;
+
+        const currentServings = this.state.servings;
+        const newState = Object.assign({}, this.state);
+        newState.ingredients.forEach( (item) => {
+            const currentCount = +(item.amount);
+            item.amount = Number(((currentCount / currentServings) * (currentServings + dir)).toFixed(2));
+        });
+
+        this.setState(newState);
+        this.setState({servings: this.state.servings + dir});
+    }
+
     render() {
         return (
             <div id='recipe'>
@@ -38,7 +52,26 @@ class Recipe extends React.Component {
                 <div className='showcase'>
                     <div className='info'>
                         <p className='desc'>{this.state.desc}</p>
+                        <div className='servings'>
+                            <h3>Servings</h3>
+                            <button onClick={() => this.updateCount(-1)}>-</button>
+                            <span id='serving-count'>{this.state.servings}</span>
+                            <button onClick={() => this.updateCount(1)}>+</button>
+                        </div>
+                        <div className='rating'>
+                            <label id='rating-label' for='selecting-rating'>Rate Me!</label>
+                            <select id='select-rating' defaultValue='none'>
+                                <option value='none' disabled hidden>Select Rating</option>
+                                <option value='1'>1 &#9733;</option>
+                                <option value='2'>2 &#9733;</option>
+                                <option value='3'>3 &#9733;</option>
+                                <option value='4'>4 &#9733;</option>
+                                <option value='5'>5 &#9733;</option>
+                            </select>
+                            &nbsp;<button id='post-rating'>Post Rating</button>
+                        </div>
                     </div>
+                    <img src={this.state.picture} height='250px' alt={'Photo of ' +this.state.title}></img>
                 </div>
 
                 <h2>Ingredients</h2>
