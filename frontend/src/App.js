@@ -12,9 +12,34 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      cart: [],
+      cartIngredients: []
     };
   }
+
+  updateCart = (items) => {
+    const cartIngredients = this.state.cartIngredients;
+
+    for (const item in items) {
+      cartIngredients[item] = items[item];
+    }
+    
+    const newCart = [...this.state.cart];
+    cartIngredients.forEach( (item) => {
+      const exists = newCart.some(el => el.ingredient === item.ingredient);
+      if (exists === true) {
+        const id = newCart.findIndex(el => el.ingredient === item.ingredient);
+        newCart[id].amount += item.amount;
+      }
+      else {
+      newCart.push({ingredient: item.ingredient, amount:item.amount});
+      }
+    });
+    this.setState({cart: newCart});
+    this.setState({cartIngredients: []});
+  }
+
+  emptyCart = () => this.setState({ cart: [] });
 
   render(){
     return (
@@ -24,13 +49,13 @@ class App extends React.Component {
           <Route exact path='/'>
             <main id='browse'>
               <RecipeList />
-              <Cart />
+              <Cart cart={this.state.cart} emptyCart={this.emptyCart} />
             </main>
           </Route>
           <Route path='/recipe'>
             <main id='browse'>
-              <Recipe />
-              <Cart />
+              <Recipe updateCart={this.updateCart} />
+              <Cart cart={this.state.cart} emptyCart={this.emptyCart} />
             </main>
           </Route>
           <Route exact path='/about'>

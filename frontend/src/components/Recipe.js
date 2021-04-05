@@ -4,7 +4,9 @@ import './Recipe.css';
 class Recipe extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            updateCart: props.updateCart,
+        }
     }
 
     updateRating () {
@@ -73,6 +75,10 @@ class Recipe extends React.Component {
         this.setState({servings: this.state.servings + dir});
     }
 
+    addToCart() {
+        this.state.updateCart(this.state.ingredients);
+    }
+
     render() {
         return (
             <div id='recipe'>
@@ -82,7 +88,7 @@ class Recipe extends React.Component {
                         <div id='ratings'>
                             <span id='rating'>{this.state.rating}</span> &#9734;
                             &nbsp;
-                            <button id='add-to-cart'>Add to Cart</button>
+                            <button id='add-to-cart' onClick={() => this.addToCart()}>Add to Cart</button>
                         </div>
                     </div>
                 </div>
